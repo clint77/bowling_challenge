@@ -1,5 +1,6 @@
 var BowlingScorecard = function() {
   this.gameFrames = 10;
+  this.currentFrame = 1;
   this.standingPins = 10;
   this.maxPinHitPerShot = 10;
   this.shotsLeft = 2;
@@ -10,6 +11,7 @@ var BowlingScorecard = function() {
 BowlingScorecard.prototype.firstShot = function(hitPins) {
   this.shotsLeft -= 1;
   this.standingPins = this.standingPins - hitPins;
+  this.strike_check();
   return this.standingPins;
 };
 
@@ -23,6 +25,7 @@ BowlingScorecard.prototype.strike_check = function() {
   if (this.shotsLeft === 1) {
     if (this.standingPins === 0) { 
       this.strike = true 
+      this.currentFrame += 1;
     } 
     else {
       this.strike = false

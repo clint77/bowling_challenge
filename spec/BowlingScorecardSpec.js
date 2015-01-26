@@ -41,7 +41,6 @@ describe('Thermostat', function() {
 
     it('can tell if it is NOT a strike', function() {
       bowlingScorecard.firstShot(9);
-      bowlingScorecard.strike_check();
       expect(bowlingScorecard.strike).toBe(false);
     });
 
@@ -61,11 +60,18 @@ describe('Thermostat', function() {
 
   });
 
-  // describe('frames', function() {
+  describe('frames', function() {
 
-  //   it('knows ')
+    it('starts on frame number 1', function() {
+      expect(bowlingScorecard.currentFrame).toEqual(1);
+    });
 
-  // });
+    it('knows that when it is a strike it should go to the next frame', function() {
+      bowlingScorecard.firstShot(10);
+      expect(bowlingScorecard.currentFrame).toEqual(2);
+    });
+
+  });
 
 });
 
