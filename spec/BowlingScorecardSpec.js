@@ -29,29 +29,43 @@ describe('Thermostat', function() {
     });
 
     it('can hit pins', function() {
-      bowlingScorecard.pinsHit(7);
+      bowlingScorecard.firstShot(7);
       expect(bowlingScorecard.standingPins).toEqual(3);
     });
 
     it('can tell if it is a strike', function() {
-      bowlingScorecard.pinsHit(10);
+      bowlingScorecard.firstShot(10);
       bowlingScorecard.strike_check();
       expect(bowlingScorecard.strike).toBe(true);
     });
 
-    it('can tell if it is not a strike', function() {
-      bowlingScorecard.pinsHit(9);
+    it('can tell if it is NOT a strike', function() {
+      bowlingScorecard.firstShot(9);
       bowlingScorecard.strike_check();
       expect(bowlingScorecard.strike).toBe(false);
     });
 
     it('can tell if it is a spare', function() {
-      bowlingScorecard.pinsHit(6);
-      bowlingScorecard.pinsHit(4);
-      expect(bowlingScorecard.strike).toBe(false);
+      bowlingScorecard.firstShot(6);
+      bowlingScorecard.secondShot(4);
+      bowlingScorecard.spare_check();
+      expect(bowlingScorecard.spare).toBe(true);
+    });
+
+    it('can tell if it is NOT a spare', function() {
+      bowlingScorecard.firstShot(5);
+      bowlingScorecard.secondShot(4);
+      bowlingScorecard.spare_check();
+      expect(bowlingScorecard.spare).toBe(false);
     });
 
   });
+
+  // describe('frames', function() {
+
+  //   it('knows ')
+
+  // });
 
 });
 
