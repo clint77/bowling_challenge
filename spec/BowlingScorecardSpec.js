@@ -67,8 +67,50 @@ describe('Thermostat', function() {
     });
 
     it('knows that when it is a strike it should go to the next frame', function() {
+      expect(bowlingScorecard.currentFrame).toEqual(1);
       bowlingScorecard.firstShot(10);
       expect(bowlingScorecard.currentFrame).toEqual(2);
+    });
+
+    it('knows that after the second shot it should go to the next frame', function() {
+      expect(bowlingScorecard.currentFrame).toEqual(1);
+      bowlingScorecard.firstShot(2);
+      bowlingScorecard.secondShot(5);
+      expect(bowlingScorecard.currentFrame).toEqual(2);
+    });
+
+  });
+
+  describe('scoring per frame', function() {
+
+    it('knows the score of each frame', function() {
+      expect(bowlingScorecard.frameScore).toEqual(0);
+      bowlingScorecard.firstShot(2);
+      bowlingScorecard.secondShot(4);
+      expect(bowlingScorecard.standingPins).toEqual(4);
+      expect(bowlingScorecard.frameScore).toEqual(6);
+    });
+
+  });
+
+  describe('total score tally', function() {
+
+    it('have a running total of the game score', function() {
+      expect(bowlingScorecard.totalScore).toEqual(0);
+      expect(bowlingScorecard.frameScore).toEqual(0);
+      expect(bowlingScorecard.currentFrame).toEqual(1);
+      bowlingScorecard.firstShot(10);
+      expect(bowlingScorecard.currentFrame).toEqual(2);
+      expect(bowlingScorecard.frameScore).toEqual(10);
+      bowlingScorecard.updateTotalScore();
+      expect(bowlingScorecard.totalScore).toEqual(10);
+      bowlingScorecard.firstShot(10);
+      expect(bowlingScorecard.frameScore).toEqual(10);
+      bowlingScorecard.updateTotalScore();
+      expect(bowlingScorecard.totalScore).toEqual(20);
+      bowlingScorecard.firstShot(10);
+      bowlingScorecard.updateTotalScore();
+      expect(bowlingScorecard.totalScore).toEqual(30);
     });
 
   });
