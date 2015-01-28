@@ -2,13 +2,10 @@ console.log("hi, clint");
 
 var bowling = new BowlingScorecard();
 
-var updateScores = function() {
-  $('#frameNumber').text(bowling.currentFrame);
-  $('#totalScoreText').text(bowling.totalScore);
-};
-
 $(document).ready(function() {
-  updateScores();
+  // updateScores();
+  $('#totalScoreText').text(bowling.totalScore);
+  $('#frameNumber').text(bowling.currentFrame);
 
   $('#firstShotOutput').text(bowling.frameScore);
 

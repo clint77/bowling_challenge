@@ -14,10 +14,17 @@
     <h3>Enter first shot score:</h3>
     <section>
      Enter score for <span>first</span> shot (between 1 and 10): 
-    <input type="number" name="score" id="firstShotInput" value="" min="1" max="10"> 
+    <input type="range" name="firstShotInput" id="firstShotInput" min="1" max="10" oninput="choiceText.value=firstShotInput.value"> 
+    <output name="choiceText" id="choiceText" for"firstShotInput"> 5</output>
     <input class="firstShot" type="submit">
     <p>Your <span>first</span> shot score is: <span id="firstShotOutput">??</span></p>
     </section>
+
+
+    <form oninput="amount.value=rangeInput.value">
+        <input type="range" id="rangeInput" name="rangeInput" min="0" max="100">
+        <output name="amount" for="rangeInput">0</output>
+    </form>
 
     <h2>Total Score: <span id="totalScoreText" >??</span></h2>
     
