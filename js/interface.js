@@ -3,9 +3,8 @@ console.log("hi, clint");
 var bowling = new BowlingScorecard();
 
 $(document).ready(function() {
-  // updateScores();
   $('#totalScoreText').text(bowling.totalScore);
-  $('#frameNumber').text(bowling.currentFrame);
+  $('#frameNumber').text(1);
 
   $('#firstShotOutput').text(bowling.frameScore);
 
@@ -16,10 +15,14 @@ $(document).ready(function() {
     $('#firstShotOutput').text(input);
     $("#1stRoll" + index).text(input);
     $("#frameTotal" + index).text(bowling.frameScore);
-
-    bowling.currentFrame += 1;
-    bowling.updateTotalScore();
-    updateScores();
+    if (bowling.strike) {
+      bowling.currentFrame = bowling.currentFrame + 1;
+    }
+    if (bowling.currentFrame <= 10) {
+      $('#frameNumber').text(bowling.currentFrame);
+      bowling.updateTotalScore();
+    }
+      $('#totalScoreText').text(bowling.totalScore);
   });
 
 });

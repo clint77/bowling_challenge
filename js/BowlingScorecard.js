@@ -29,8 +29,8 @@ BowlingScorecard.prototype.secondShot = function(hitPins) {
 BowlingScorecard.prototype.strike_check = function() {
   if (this.shotsLeft === 1) {
     if (this.standingPins === 0) { 
-      this.strike = true 
       this.currentFrame += 1;
+      this.strike = true 
     } 
     else {
       this.strike = false
