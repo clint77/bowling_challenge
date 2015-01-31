@@ -15,9 +15,7 @@ $(document).ready(function() {
     $('#firstShotOutput').text(input);
     $("#1stRoll" + index).text(input);
     $("#frameTotal" + index).text(bowling.frameScore);
-    if (bowling.strike) {
-      bowling.currentFrame = bowling.currentFrame + 1;
-    }
+    bowling.currentFrame = bowling.currentFrame + 1;
     if (bowling.currentFrame <= 10) {
       $('#frameNumber').text(bowling.currentFrame);
       bowling.updateTotalScore();
