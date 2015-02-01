@@ -16,11 +16,14 @@ $(document).ready(function() {
     $("#1stRoll" + index).text(input);
     $("#frameTotal" + index).text(bowling.frameScore);
     bowling.currentFrame = bowling.currentFrame + 1;
-    if (bowling.currentFrame <= 10) {
-      $('#frameNumber').text(bowling.currentFrame);
+    if (bowling.currentFrame <= 11) {
       bowling.updateTotalScore();
-    }
       $('#totalScoreText').text(bowling.totalScore);
+      if (bowling.currentFrame <= 10) {
+        $('#frameNumber').text(bowling.currentFrame);
+      }
+    }
+  
   });
 
 });
