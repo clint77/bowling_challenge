@@ -35,7 +35,8 @@ describe('Thermostat', function() {
 
     it('can tell if it is a strike', function() {
       bowlingScorecard.firstShot(10);
-      bowlingScorecard.strike_check();
+      expect(bowlingScorecard.strike).toBe(true);
+      bowlingScorecard.firstShot(10);
       expect(bowlingScorecard.strike).toBe(true);
     });
 
@@ -47,14 +48,15 @@ describe('Thermostat', function() {
     it('can tell if it is a spare', function() {
       bowlingScorecard.firstShot(6);
       bowlingScorecard.secondShot(4);
-      bowlingScorecard.spare_check();
+      expect(bowlingScorecard.spare).toBe(true);
+      bowlingScorecard.firstShot(6);
+      bowlingScorecard.secondShot(4);
       expect(bowlingScorecard.spare).toBe(true);
     });
 
     it('can tell if it is NOT a spare', function() {
       bowlingScorecard.firstShot(5);
       bowlingScorecard.secondShot(4);
-      bowlingScorecard.spare_check();
       expect(bowlingScorecard.spare).toBe(false);
     });
 
@@ -89,6 +91,15 @@ describe('Thermostat', function() {
       bowlingScorecard.secondShot(4);
       expect(bowlingScorecard.standingPins).toEqual(4);
       expect(bowlingScorecard.frameScore).toEqual(6);
+    });
+
+    it ('each strike gets a bonus for the next 2 rolls', function() {
+      bowlingScorecard.firstShot(10);
+      expect(bowlingScorecard.frameScore).toEqual(10);
+      bowlingScorecard.firstShot(4);
+      bowlingScorecard.secondShot(4);
+      bowlingScorecard.bonus();
+      expect(bowlingScorecard.bonusScore).toEqual(8);
     });
 
   });
